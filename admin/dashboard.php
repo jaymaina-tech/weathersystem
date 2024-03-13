@@ -34,6 +34,29 @@
         <textarea id="description" name="description" required></textarea><br>
         <button type="submit">Post Weather</button>
     </form>
+    <br>
+   
+    <div class="email-table">
+    <?php
+require_once "../server/fetch_emails.php"; 
+?>
+        <h3>Subscribed Emails</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Email Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($emails as $email) : ?>
+                    <tr>
+                        <td><?php echo $email; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
     <p><a href="../server/logout.php">Logout</a></p>
+
 </body>
 </html>

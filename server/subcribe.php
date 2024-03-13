@@ -8,10 +8,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Add the email to the database
     $sql = "INSERT INTO user_emails (email) VALUES ('$email')";
     if (mysqli_query($conn, $sql)) {
-        echo "Subscription successful!";
+        mysqli_close($conn);
         header("Location: ../user/index.php");
+        exit(); // Ensure that script execution stops after redirection
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
-    mysqli_close($conn);
 }
+?>

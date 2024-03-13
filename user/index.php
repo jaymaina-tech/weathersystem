@@ -24,12 +24,13 @@
     </div>
    
     <div class="email-container"> 
-        <h4>Want daily updates on weather forecast? subscribe here</h4>
-        <form action="../server/subscribe.php" method="POST">
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" required><br><br>
-            <input type="submit" value="Subscribe">
-        </form>
+    <h4>Want daily updates on weather forecast? subscribe here</h4>
+    <form action="../server/subscribe.php" method="POST">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required><br><br>
+        <button type="submit">Subscribe</button>
+    </form>
+</div>
 
     <script>
         
