@@ -8,6 +8,8 @@
 </head>
 <body>
     <h2>Admin Dashboard</h2>
+
+    <!-- First section: Post weather updates -->
     <form action="../server/post_weather.php" method="POST">
         <label for="period">Select Period:</label>
         <select name="period" id="period">
@@ -34,29 +36,30 @@
         <textarea id="description" name="description" required></textarea><br>
         <button type="submit">Post Weather</button>
     </form>
-    <br>
-   
-    <div class="email-table">
-    <?php
-require_once "../server/fetch_emails.php"; 
-?>
-        <h3>Subscribed Emails</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Email Address</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($emails as $email) : ?>
-                    <tr>
-                        <td><?php echo $email; ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-    <p><a href="../server/logout.php">Logout</a></p>
 
+    <!-- Second section: Select emails to send weather updates -->
+<form action="../server/send_emails.php" method="POST">
+    <h3>Select Emails to Send Weather Updates</h3>
+    <div class="email-container">
+        <?php
+        require_once "../server/fetch_emails.php";
+        ?>
+        <?php if (!empty($emails)): ?>
+            <?php foreach ($emails as $email): ?>
+                <div class="checkbox">
+                    <input type="checkbox" name="selected_emails[]" value="<?php echo $email; ?>">
+                    <label><?php echo $email; ?></label>
+                </div>
+            <?php endforeach; ?>
+            <button type="submit">Send Updates</button>
+        <?php else: ?>
+            <p>No subscribed emails found.</p>
+        <?php endif; ?>
+    </div>
+</form>
+
+   
+
+    <p><a href="../server/logout.php">Logout</a></p>
 </body>
 </html>
